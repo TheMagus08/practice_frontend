@@ -1,0 +1,42 @@
+<app-nav></app-nav>
+<div class="container">
+  <div class="flex gap-5">
+    <button type="button" (click)="crear()" class="btn btn-primary">Crear oferta</button>
+  </div>
+  <h2>Lista de Ofertas</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Sector</th>
+        <th>Industria</th>
+        <th>Titulo</th>
+        <th>Empresa</th>
+        <th>Modalidad</th>
+        <th>Tiempo</th>
+        <th>Salario</th>
+        <th>Estado</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let oferta of ofertas">
+        <td>{{ oferta.tipoSector?.descripcion }}</td>
+        <td>{{ oferta.industria }}</td>
+        <td>{{ oferta.titulo }}</td>
+        <td>{{ oferta.empresa }}</td>
+        <td>{{ oferta.modalidad }}</td>
+        <td>{{ oferta.enumTiempo?.descripcion }}</td>
+        <td>{{ oferta.salario }}</td>
+        <td>{{ oferta.estado?.descripcion }}</td>
+        <td>{{ oferta.fechaInicio }}</td>
+        <td>{{ oferta.fechaFin }}</td>
+        <td>
+          <button (click)="editar(oferta.id)" class="btn btn-warning">Editar</button>
+          <button (click)="eliminar(oferta.id)" class="btn btn-danger btn-sm">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

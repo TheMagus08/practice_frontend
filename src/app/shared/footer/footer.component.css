@@ -1,0 +1,17 @@
+.color {
+  --tw-bg-opacity: 1;
+  background-color: rgb(25 149 79 / var(--tw-bg-opacity));
+  font-weight: bold;
+  font-size: 18px;
+
+
+}
+
+.color2{
+  background-color: red;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}

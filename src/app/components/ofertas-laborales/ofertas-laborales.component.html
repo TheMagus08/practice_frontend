@@ -1,0 +1,48 @@
+<app-nav></app-nav>
+<div class="row">
+  <div class="col-4">
+    <label for="sector">Sector:</label>
+    <select (change)="onSectorChange($event)" class="form-select" id="sector">
+      <option value="">Todos</option>
+      <option *ngFor="let sector of sectores" [value]="sector.id">{{ sector.descripcion }}</option>
+    </select>
+  </div>
+  <div class="col-4">
+    <label for="tiempo">Tiempo:</label>
+    <select (change)="onTiempoChange($event)" class="form-select" id="tiempo">
+      <option value="">-- Seleccionar tiempo --</option>
+      <option *ngFor="let tiempo of tiempos" [value]="tiempo.id">{{ tiempo.descripcion }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center mb-4">Ofertas de Trabajo</h2>
+      <div class="row">
+        <ng-container *ngIf="ofertas.length > 0; else noOfertas">
+          <div class="col-md-4 mb-4" *ngFor="let oferta of ofertas">
+            <div class="card h-100" [routerLink]="['/oferta-detalle/', oferta.id]">
+              <div class="card-body">
+                <h5 class="card-title">{{ oferta.titulo }}</h5>
+                <p class="card-text"><strong>Empresa:</strong> {{ oferta.empresa }}</p>
+                <p class="card-text"><strong>Modalidad:</strong> {{ oferta.modalidad }}</p>
+                <p class="card-text"><strong>Salario:</strong> {{ oferta.salario }}</p>
+                <p class="card-text"><strong>Fecha Inicio:</strong> {{ oferta.fechaInicio }}</p>
+                <p class="card-text"><strong>Fecha Fin:</strong> {{ oferta.fechaFin }}</p>
+                <p class="card-text"><strong>Tiempo:</strong> {{ oferta.enumTiempo?.descripcion }}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <ng-template #noOfertas>
+        <div class="alert alert-warning text-center" role="alert">
+          No hay ofertas publicadas en este momento.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

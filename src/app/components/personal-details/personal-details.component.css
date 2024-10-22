@@ -1,0 +1,75 @@
+.form-group {
+  margin-bottom: 15px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+/* personal-details.component.css */
+.hijos {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+.styled-hr {
+  border: 0;
+  border-top: 2px solid #000;
+  margin: 20px 0;
+}
+
+
+.alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 1000;
+  border-radius: 4px;
+  padding: 15px;
+  color: #fff;
+  background-color: #28a745; /* Color verde de éxito */
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.alert.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.alert.error {
+  background-color: #dc3545; /* Color rojo para errores */
+}
+
+@media (min-width: 768px) {
+    .md\:gap-5 {
+        gap: 1.25rem;
+    }
+}
+@media (min-width: 768px) {
+    .md\:flex-row {
+        flex-direction: row;
+    }
+}
+.gap-3 {
+    gap: .75rem;
+}
+.items-end {
+    align-items: flex-end;
+}
+.flex-col {
+    flex-direction: column;
+}
+.flex {
+    display: flex;
+}
+.mb-5 {
+    margin-bottom: 1.25rem;
+}

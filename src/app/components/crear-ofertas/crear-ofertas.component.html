@@ -1,0 +1,63 @@
+<app-nav></app-nav>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="fechaInicio">Fecha Inicio</label>
+    <input formControlName="fechaInicio" type="date" id="fechaInicio" />
+  </div>
+
+  <div>
+    <label for="fechaFin">Fecha Fin</label>
+    <input formControlName="fechaFin" type="date" id="fechaFin" />
+  </div>
+
+  <div>
+    <label for="sector">Sector</label>
+    <select formControlName="sector" id="sector">
+      <option *ngFor="let sector of tiposSectores" [value]="sector.id">
+        {{ sector.descripcion }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="industria">Industria</label>
+    <input formControlName="industria" type="text" id="industria" />
+  </div>
+
+  <div>
+    <label for="titulo">Título</label>
+    <input formControlName="titulo" type="text" id="titulo" />
+  </div>
+
+  <div>
+    <label for="empresa">Empresa</label>
+    <input formControlName="empresa" type="text" id="empresa" />
+  </div>
+
+  <div>
+    <label for="modalidad">Modalidad</label>
+    <input formControlName="modalidad" type="text" id="modalidad" />
+  </div>
+
+  <div>
+    <label for="tiempo">Tipo de Tiempo</label>
+    <select formControlName="tiempo" id="tiempo">
+      <option *ngFor="let tiempo of tiposTiempo" [value]="tiempo.id">{{ tiempo.descripcion }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="salario">Salario</label>
+    <input formControlName="salario" type="text" id="salario" />
+  </div>
+
+  <div>
+    <label for="estado">Estado</label>
+    <select formControlName="estado" id="estado">
+      <option *ngFor="let estado of tiposEstado" [value]="estado.id">{{ estado.descripcion }}</option>
+    </select>
+  </div>
+
+  <button type="button" (click)="onSubmit()">{{ isEditMode ? 'Editar' : 'Guardar' }}</button>
+</form>

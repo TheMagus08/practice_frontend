@@ -1,0 +1,38 @@
+<app-nav></app-nav>
+
+<section class="vh-100% gradient-custom" style="margin: 50px 0">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-light  text-white" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+              <img src="assets/img/user.png" class="user-icon mb-4" alt="user-icon">
+
+              <form [formGroup]="loginForm">
+                <div class="form-outline form-white mb-4">
+                  <input formControlName="username" type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+
+                <div class="form-outline form-white mb-4">
+                  <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+
+                <button type="submit" (click)="login()" class="btn btn-primary btn-lg btn-block"  >Iniciar Sesión</button>
+              </form>
+
+              <button class="btn btn-light btn-lg btn-block mt-3">
+                <img src="assets/img/google-icon.png" alt="google-icon" style="width: 20px; margin-right: 10px;"> Iniciar Con Google
+              </button>
+
+              <p class="small mt-3">
+                <a href="#!" class="text-dark">Restablecer mi contraseña</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

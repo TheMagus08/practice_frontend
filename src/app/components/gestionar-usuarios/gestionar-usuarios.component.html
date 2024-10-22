@@ -1,0 +1,96 @@
+
+<app-nav></app-nav>
+<div class="container">
+  <div class="flex gap-5">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearUsuarioModal">
+      Crear usuario
+    </button>
+
+
+    <button type="button" class="btn btn-success">Importar usuarios</button>
+  </div>
+  <h2>Lista de Usuarios</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Segundo Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Código</th>
+        <th>Email</th>
+        <th>Número del Documento</th>
+        <th>Rol</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--@for (user of users; track $index){-->
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user.primerNombre }}</td>
+        <td>{{ user.segundoNombre }}</td>
+        <td>{{ user.apellidoP }}</td>
+        <td>{{ user.apellidoM }}</td>
+        <td>{{ user.codigo }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.numeroDocumento }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="onAction(user)">Acción</button>
+
+          </td>
+      </tr>
+    <!--}-->
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para crear usuario -->
+<div class="modal fade" id="crearUsuarioModal" tabindex="-1" aria-labelledby="crearUsuarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearUsuarioModalLabel">Crear nuevo usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="username" class="form-label">Correo</label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="newUser.username" name="username" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-control" id="role" (change)="onRoleChange($event)" required>
+              <option [value]="">--Seleccione el rol--</option>
+              <option *ngFor="let role of roles" [value]="role.role">{{ role.role }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="tipoSexo" class="form-label">Sexo</label>
+            <select class="form-control" id="tipoSexo" (change)="onInputChange($event, 'tipoSexo')" required>
+              <option [value]="">--Seleccione el sexo--</option>
+              <option *ngFor="let sexo of tipoSexo" [value]="sexo.descripcion">{{ sexo.descripcion }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="documento" class="form-label">Documento de identidad</label>
+            <select class="form-control" id="documento" (change)="onInputChange($event, 'tipoDocumento')" required>
+              <option [value]="">--Seleccione el documento--</option>
+              <option *ngFor="let Documento of documento" [value]="Documento.documento">{{ Documento.documento }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="newUser.password" name="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

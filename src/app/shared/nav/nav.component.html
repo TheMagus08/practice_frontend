@@ -1,0 +1,33 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+  <div class="container d-flex justify-content-between align-items-center">
+    <!-- Título centrado -->
+    <a class="navbar-brand text-white mx-auto" routerLink="/perfil">ACTUALIZACIÓN DE DATOS - COLEGIADOS</a>
+
+    <!-- Menú con tres puntos -->
+    <div *ngIf="userLoginOn" class="dropdown">
+      <a class="text-white dropdown-toggle no-caret" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-three-dots-vertical" style="font-size: 1.5rem;"></i>
+      </a>
+
+      <!-- Opciones desplegables -->
+      <ul  class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+        <li *ngIf="userLoginOn" class="nav-item">
+          <a class="dropdown-item" routerLink="/ofertas-laborales">Ofertas laborales</a>
+        </li>
+        <li *ngIf="userLoginOn" class="nav-item">
+          <a class="dropdown-item" routerLink="/gestionar-usuarios">Gestionar usuarios</a>
+        </li>
+        <li *ngIf="userLoginOn" class="nav-item">
+        <a class="dropdown-item" routerLink="/gestionar-ofertas">Gestionar ofertas</a>
+        </li>
+        <li *ngIf="!userLoginOn" class="nav-item">
+          <a class="dropdown-item" routerLink="/login">Iniciar Sesion</a>
+        </li>
+        <li *ngIf="userLoginOn" class="nav-item">
+          <a class="dropdown-item" href="#" (click)="logout()">Cerrar Sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

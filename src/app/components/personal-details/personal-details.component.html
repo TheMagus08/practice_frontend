@@ -1,0 +1,342 @@
+<div *ngIf="mostrarMensaje" class="alert alert-success mt-3" role="alert">
+  ¡Los datos se han guardado exitosamente!
+</div>
+
+<p *ngIf="errorMessage.length!=0" class="text-danger">{{errorMessage}}</p>
+
+<div>
+
+
+ <!-- Botón para habilitar edición del campo sexo -->
+ <button *ngIf="!isEditing" (click)="enableEdit()" class="btn btn-dark">
+  <img src="https://cdn.icon-icons.com/icons2/1572/PNG/96/3592815-compose-create-edit-edit-file-office-pencil-writing_107734.png" width="8%" alt="editar" />
+  Activar modo editar
+</button>
+
+<!-- Botón para desactivar la edición del campo sexo -->
+  <button *ngIf="isEditing" (click)="disableEdit()" class="btn btn-danger">
+    <img src="https://cdn.icon-icons.com/icons2/1572/PNG/96/3592815-compose-create-edit-edit-file-office-pencil-writing_107734.png" width="8%" alt="desactivar" />
+    Desactivar modo editar
+  </button>
+</div>
+
+<form [formGroup]="registerForm" >
+
+<div class="row ">
+
+  <div class="col-4">
+    <label for="inputTipoDocumento" class="">Tipo de documento:</label>
+    <div class="">
+      <select type="text" formControlName="tipoDocumento" class="form-control" id="inputTipoDocumento">
+        <option *ngFor="let documento1 of documentos" [value]="documento1.documento">{{ documento1.documento }}</option>
+      </select>
+
+      <div *ngIf="registerForm.get('tipoDocumento')?.invalid && (registerForm.get('tipoDocumento')?.dirty || registerForm.get('tipoDocumento')?.touched)" class="text-danger">
+        <div *ngIf="registerForm.get('tipoDocumento')?.errors?.['required']">
+          El tipo de documento es requerido.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campo Numero de Documento -->
+  <div class="col-4">
+    <label for="inputNumeroDocumento" class="">Numero de documento:</label>
+    <div class="">
+      <input type="text" formControlName="numeroDocumento" class="form-control" id="inputNumeroDocumento">
+
+      <div *ngIf="numeroDocumento.invalid && (numeroDocumento.dirty || numeroDocumento.touched)" class="text-danger">
+        <div *ngIf="numeroDocumento.errors?.['required']">
+          El numero de documento es requerido.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campo Tipo de Documento -->
+
+  <div class="col-4">
+    <label for="inputCodigo" class="">Codigo:</label>
+    <div class="">
+      <input type="text" formControlName="codigo" class="form-control" id="inputCodigo">
+
+      <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="text-danger">
+        <div *ngIf="codigo.errors?.['required']">
+          El codigo es requerido.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+<!-- Campo Primer Nombre -->
+<div class="col-6">
+  <label for="inputPrimerNombre" class="">Primer Nombre:</label>
+  <div class="">
+    <input type="text" formControlName="primerNombre" class="form-control" id="inputPrimerNombre">
+
+    <div *ngIf="primerNombre.invalid && (primerNombre.dirty || primerNombre.touched)" class="text-danger">
+      <div *ngIf="primerNombre.errors?.['required']">
+        El primer nombre es requerido.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Campo Segundo Nombre -->
+<div class="col-6">
+  <label for="inputSegundoNombre" class="">Segundo Nombre:</label>
+  <div class="">
+    <input type="text" formControlName="segundoNombre" class="form-control" id="inputSegundoNombre">
+
+    <div *ngIf="segundoNombre.invalid && (segundoNombre.dirty || segundoNombre.touched)" class="text-danger">
+      <div *ngIf="segundoNombre.errors?.['required']">
+        El segundo nombre es requerido.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="row">
+
+  <!-- Campo Apellido Paterno -->
+<div class="col-6">
+  <label for="inputApellidoP" class="">Apellido Paterno:</label>
+  <div class="">
+    <input type="text" formControlName="apellidoP" class="form-control" id="inputApellidoP">
+
+    <div *ngIf="apellidoP.invalid && (apellidoP.dirty || apellidoP.touched)" class="text-danger">
+      <div *ngIf="apellidoP.errors?.['required']">
+        El apellido paterno es requerido.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Campo Apellido Materno -->
+<div class="col-6">
+  <label for="inputApellidoM" class="">Apellido Materno:</label>
+  <div class="">
+    <input type="text" formControlName="apellidoM" class="form-control" id="inputApellidoM">
+
+    <div *ngIf="apellidoM.invalid && (apellidoM.dirty || apellidoM.touched)" class="text-danger">
+      <div *ngIf="apellidoM.errors?.['required']">
+        El apellido materno es requerido.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <!-- Campo Sexo -->
+<div class="col-3">
+  <label for="inputSexo" class="">Sexo:</label>
+  <div class="">
+    <select id="inputSexo" formControlName="sexo" class="form-control">
+      <option *ngFor="let sexo of sexos" [value]="sexo.descripcion">{{ sexo.descripcion }}</option>
+    </select>
+
+    <div *ngIf="registerForm.get('sexo')?.invalid && (registerForm.get('sexo')?.dirty || registerForm.get('sexo')?.touched)" class="text-danger">
+      <div *ngIf="registerForm.get('sexo')?.errors?.['required']">
+        El sexo es requerido.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Campo Fecha de Nacimiento -->
+<div class="col-3">
+  <label for="inputFechaNac" class="">Fecha de nacimiento:</label>
+  <div class="">
+    <input type="date" formControlName="fechaNac" class="form-control" id="inputFechaNac">
+
+    <div *ngIf="fechaNac.invalid && (fechaNac.dirty || fechaNac.touched)" class="text-danger">
+      <div *ngIf="fechaNac.errors?.['required']">
+        La fecha de nacimiento es requerida.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Campo Lugar de Nacimiento (Ciudad) -->
+<div class="col-3">
+  <label for="inputCiudadNac" class="">Lugar de nacimiento (ciudad):</label>
+  <div class="">
+    <input type="text" formControlName="ciudadNac" class="form-control" id="inputCiudadNac">
+
+    <div *ngIf="ciudadNac.invalid && (ciudadNac.dirty || ciudadNac.touched)" class="text-danger">
+      <div *ngIf="ciudadNac.errors?.['required']">
+        El lugar de nacimiento es requerido.
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Campo Estado Civil -->
+  <div class="col-3">
+    <label for="inputEstadoCivil" class="">Estado civil:</label>
+    <div class="">
+      <input type="text" formControlName="estadoCivil" class="form-control" id="inputEstadoCivil"
+        [readonly]="!editMode">
+
+      <div *ngIf="estadoCivil.invalid && (estadoCivil.dirty || estadoCivil.touched)" class="text-danger">
+        <div *ngIf="estadoCivil.errors?.['required']">
+          El estado civil es requerido.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <div class="hijos row">
+    ¿Tienes hijos menores de 18 años? Esta información servirá para brindarte beneficios e invitaciones para eventos y festividades.
+    <div class="" formArrayName="children">
+      <div *ngFor="let child of children.controls; let i = index" [formGroupName]="i" class="row">
+        <div class="col-3">
+          <label for="childName{{i}}" class="">Nombre:</label>
+          <div class="">
+            <input type="text" id="childName{{i}}" formControlName="nombres" [attr.disabled]="!isEditing? true : null" class="form-control">
+          </div>
+        </div>
+        <div class="col-3">
+          <label for="childSexo{{i}}" class="">Sexo:</label>
+          <div class="">
+          <select id="childSexo{{i}}" formControlName="sexo" [attr.disabled]="!isEditing ? true : null" class="form-control">
+            <option *ngFor="let sexo of sexos" [value]="sexo.descripcion">{{ sexo.descripcion }}</option>
+          </select>
+          </div>
+        </div>
+        <div class="col-3">
+          <label for="childFechaNacimiento{{i}}" class="">Fecha de Nacimiento:</label>
+          <div class="">
+            <input type="date" id="childFechaNacimiento{{i}}" formControlName="fechaNacimiento" [attr.disabled]="!isEditing? true : null" class="form-control">
+          </div>
+        </div>
+        <div class="col-3">
+
+
+        <label for="childDni{{i}}" class="">DNI:</label>
+        <div class="">
+          <input type="text" id="childDni{{i}}" formControlName="dni" [attr.disabled]="!isEditing ? true : null" class="form-control">
+        </div>
+
+        </div>
+
+        <button *ngIf="isEditing" type="button" (click)="removeChild(i)" class="btn btn-danger col-1">Eliminar</button>
+        <hr class="styled-hr">
+
+      </div>
+
+    </div>
+    <button *ngIf="isEditing" type="button" (click)="addChild()" class="btn btn-primary">+ Agregar</button>
+
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <label for="inputTelefono1" class="">Telefono 1 (whatsApp):</label>
+      <div class="">
+        <input type="text" formControlName="telefono1" class="form-control" id="inputTelefono1">
+      </div>
+    </div>
+    <div class="col-4">
+
+      <label for="inputTelefono1" class="">Telefono 2</label>
+      <div class="">
+        <input type="text" formControlName="telefono2" class="form-control" id="inputTelefono2">
+
+      </div>
+
+    </div>
+    <div class="col-4">
+      <label for="inputUsername" class="">Correo</label>
+      <div class="">
+        <input type="text" formControlName="username" class="form-control" id="inputUsername">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9">
+      <label for="inputDireccion" class="">Dirección</label>
+      <div class="">
+        <input type="text" formControlName="direccion" class="form-control" id="inputDireccion">
+      </div>
+
+    </div>
+    <div class="col-3">
+      <label for="inputUrbanizacion" class="">Urbanización</label>
+      <div class="">
+        <input type="text" formControlName="urbanizacion" class="form-control" id="inputUrbanizacion">
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <label for="departamento">Selecciona un Departamento:</label>
+      <select id="departamento" formControlName="selectedDepartamentoId" (change)="onDepartamentoChange()" class="form-select">
+        <option value="">-- Seleccionar departamento --</option>
+          <option *ngFor="let departamento of departamentos" [value]="departamento.id">{{ departamento.name }}</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <label for="provincia">Selecciona una Provincia:</label>
+      <select id="provincia" formControlName="selectedProvinciaId" (change)="onProvinciaChange()" class="form-select">
+        <option value="">-- Seleccionar provincia --</option>
+          <option *ngFor="let provincia of provincias" [value]="provincia.id">{{ provincia.name }}</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <label for="distrito">Selecciona un Distrito:</label>
+      <select id="distrito" formControlName="selectedDistritoId" class="form-select">
+          <option value="">-- Seleccionar distrito --</option>
+          <option *ngFor="let distrito of distritos" [value]="distrito.id">{{ distrito.name }}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <label for="inputLinkedin" class="">Linkedin</label>
+      <div class="">
+        <input type="text" formControlName="linkedin" class="form-control" id="inputLinkedin">
+      </div>
+    </div>
+    <div class="col-4">
+      <label for="inputFacebook" class="">Facebook</label>
+      <div class="">
+        <input type="text" formControlName="facebook" class="form-control" id="inputFacebook">
+      </div>
+    </div>
+    <div class="col-4">
+      <label for="inputInstagram" class="">Instagram</label>
+      <div class="">
+        <input type="text" formControlName="instagram" class="form-control" id="inputInstagram">
+      </div>
+    </div>
+
+  </div>
+
+  <button *ngIf="isEditing" type="submit" (click)="savePersonalDetailsData()" class="btn btn-dark mt-3">Guardar</button>
+  <button *ngIf="isEditing" type="button" (click)="cancelEdit()" class="btn btn-danger mt-3">Cancelar</button>
+
+</form>
+
+
+
+
+
+
+
